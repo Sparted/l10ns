@@ -98,7 +98,6 @@ Search.prototype.readLocalizations = function() {
 
 Search.prototype.queryOutput = function(q) {
   var _this = this;
-
   var res = this.index.search(q).slice(0, program.DEFAULT_LOG_LENGTH);
 
   if(res.length === 0) {

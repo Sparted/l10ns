@@ -110,11 +110,12 @@ define(function(require) {
       var _this = this;
       var id = event.currentTarget.getAttribute('data-id');
       var key = encodeURI(event.currentTarget.getAttribute('data-key').replace(/\s/g, '-'));
+      var mode = window.location.pathname.split('/')[2];
 
       this.$region.removeClass('is-revealed').addClass('is-hidden');
       setTimeout(function() {
         _this.$region.hide();
-        app.navigate('/' + app.language + '/l/' + id + '/' + key);
+        app.navigate('/' + app.language + '/' + mode + '/l/' + id + '/' + key);
       }, 400);
     },
 

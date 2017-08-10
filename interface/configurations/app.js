@@ -50,11 +50,11 @@ module.exports = function(app) {
   app.configure(function() {
     app.use(function(request, response, next) {
       if(request.url === '/') {
-        response.redirect('/' + project.defaultLanguage + '/localizations');
+        response.redirect('/' + project.defaultLanguage + '/Validate/localizations');
         return;
       }
       else if(/^\/[a-z]{2}\-[A-Z]{2}\/?$/.test(request.url)) {
-        response.redirect(path.normalize(request.url + '/localizations'));
+        response.redirect(path.normalize(request.url + '/Validate/localizations'));
         return;
       }
       else {

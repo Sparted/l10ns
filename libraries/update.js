@@ -139,6 +139,7 @@ Update.prototype.getNewLocalizations = function() {
               newLocalizations[key].key = key;
               newLocalizations[key].variables = variables;
               newLocalizations[key].files = [file];
+              newLocalizations[key].validated = false;
               hashCount++;
             }
             else {
