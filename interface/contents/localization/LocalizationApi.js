@@ -15,7 +15,6 @@ module.exports = function(app) {
         var after = null
         var stop = false
 
-
         for (value in localizationLocal) {
           after = localizationLocal[value];
           if (stop)
@@ -41,6 +40,8 @@ module.exports = function(app) {
         else {
           localizationWithRequestedLocale.message = defaultMessage;
         }
+        localizationWithRequestedLocale.before = before;
+        localizationWithRequestedLocale.after = after;
         response.json(localizationWithRequestedLocale);
       })
       .fail(function(error) {
