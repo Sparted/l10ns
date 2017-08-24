@@ -138,6 +138,7 @@ define(function(require) {
       }
 
       this.$el.removeClass('is-active');
+      
       setTimeout(function() {
         _this.$dropdown.css('height', '').css('padding', '0');
       }, 200);
