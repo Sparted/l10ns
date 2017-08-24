@@ -54,7 +54,7 @@ module.exports = function(app) {
         return;
       }
       else if(/^\/[a-z]{2}\-[A-Z]{2}\/?$/.test(request.url)) {
-        response.redirect(path.normalize(request.url + '/Validate/localizations'));
+        response.redirect(path.normalize(request.url + '/validate/localizations'));
         return;
       }
       else {
