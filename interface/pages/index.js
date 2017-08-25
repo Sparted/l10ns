@@ -1,12 +1,13 @@
 
 module.exports = function(page) {
-  page('/:locale/localizations')
+  page('/:locale/:mode/localizations')
     .hasDocument('default')
       .withProperties({
         title: null,
         description: null,
         configurations: ['default'],
         locale: 'en',
+        mode: 'Validate',
         styles: [
           '/public/styles/documents/default.css',
           '/public/styles/content/app.css'

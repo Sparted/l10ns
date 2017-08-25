@@ -3,37 +3,28 @@
     "files": [
       "example/javascript/index.js"
     ],
-    "id": "RoyLqnkBU9",
-    "key": "NEW_KEY",
-    "new": false,
-    "timestamp": "2016-10-07T12:08:37.990Z",
-    "value": "",
-    "variables": []
-  },
-  {
-    "files": [
-      "example/javascript/index.js"
-    ],
-    "id": "XAjLqnRdId",
-    "key": "CURRENCY",
-    "new": false,
-    "timestamp": "2016-10-07T12:04:22.885Z",
+    "id": "67LXRAbESj",
+    "key": "Alloaa",
+    "new": true,
+    "timestamp": "2017-08-10T14:40:38.424Z",
+    "validated": false,
     "value": "",
     "variables": [
-      "price"
+      "alloha"
     ]
   },
   {
     "files": [
       "example/javascript/index.js"
     ],
-    "id": "njKLqR8eCq",
-    "key": "TEST",
-    "new": false,
-    "timestamp": "2016-10-07T12:04:22.885Z",
+    "id": "gEjL4qp9uX",
+    "key": "Fooobar",
+    "new": true,
+    "timestamp": "2017-08-10T14:40:38.424Z",
+    "validated": false,
     "value": "",
     "variables": [
-      "test"
+      "alloha"
     ]
   }
 ]

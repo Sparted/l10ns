@@ -87,11 +87,12 @@ define(function(require) {
      */
 
     _handleUpdateRequestFromClient: function(model, options, requestData) {
-      var id = window.location.pathname.split('/')[3]
+      var id = window.location.pathname.split('/')[4]
+        , mode = window.location.pathname.split('/')[2]
         , json = this.toL10nsJSON();
 
       request
-        .put('/api/' + app.language + '/l/' + id)
+        .put('/api/' + app.language + '/' + mode + '/l/' + id)
         .send(json)
         .end(function(error, response) {
           if(!error && response.status === 200) {
@@ -122,7 +123,8 @@ define(function(require) {
 
     _handleReadRequestFromClient: function(model, options, requestData) {
       var _this = this
-        , id = window.location.pathname.split('/')[3];
+        , id = window.location.pathname.split('/')[4]
+        , mode = window.location.pathname.split('/')[2];
 
       var $json = $('.js-json-localization');
       if($json.length) {
@@ -132,7 +134,7 @@ define(function(require) {
         return;
       }
       request
-        .get('/api/' + app.language + '/l/' + id)
+        .get('/api/' + app.language + '/' + mode + '/l/' + id)
         .end(function(err, res) {
           var localization = res.body;
           _this._parse(localization);

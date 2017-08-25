@@ -18,6 +18,7 @@ define(function(require) {
       if(method === 'read') {
         if(inServer) {
           this.set('locale', request.param('locale'));
+          this.set('mode', request.param('mode'))
         }
 
         options.success();

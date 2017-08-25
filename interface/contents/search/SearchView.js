@@ -149,7 +149,7 @@ define(function(require) {
 
       this.$input.blur();
 
-      app.navigate('/' + app.language + '/l/' + localization.id + '/' + localization.key);
+      app.navigate('/' + app.language + '/Validate/l/' + localization.id + '/' + localization.key);
     },
 
     /**

@@ -59,25 +59,37 @@ define(function(require) {
           collection.reset();
           file.readLocalizations()
             .then(function(localizations) {
+
               var locale = request.param('locale')
-                , localizationsWithRequestedLocale = file.localizationMapToArray(localizations)[locale].slice(0, cf.ITEMS_PER_PAGE);
+                , mode = request.param('mode')
+                , localizationsWithRequestedLocale = file.localizationMapToArray(localizations)[locale].slice(0, cf.ITEMS_PER_PAGE)
+                , localizationsWithLocalAndMode = [];
+
+              localizationsWithRequestedLocale.forEach(function filterByMode(localization) {
+                if (mode === 'Validate' && localization.value.length && !localization.validated)
+                  localizationsWithLocalAndMode.push(localization);
+                else if (mode === 'Translate' && !localization.value.length)
+                  localizationsWithLocalAndMode.push(localization);
+                else if (mode === 'Read')
+                  localizationsWithLocalAndMode.push(localization);
+              });
 
               if(locale !== project.defaultLanguage) {
                 _this.setMeta('l10n_keys', 'Keys | ' + project.defaultLanguage);
                 var localizationsWithDefaultLocale = localizations[project.defaultLanguage];
 
-                for(var index = 0; index < localizationsWithRequestedLocale.length; index++) {
-                  localizationsWithRequestedLocale[index].keyText =
-                    localizationsWithRequestedLocale[index].key + ' <br><b> ' +  localizationsWithDefaultLocale[localizationsWithRequestedLocale[index].key].value +'</b>';
+                for(var index = 0; index < localizationsWithLocalAndMode.length; index++) {
+                  localizationsWithLocalAndMode[index].keyText =
+                    localizationsWithLocalAndMode[index].key + ' <br><b> ' +  localizationsWithDefaultLocale[localizationsWithLocalAndMode[index].key].value +'</b>';
                 }
               }
               else {
                 _this.setMeta('l10n_keys', 'Keys');
-                for(var index = 0; index < localizationsWithRequestedLocale.length; index++) {
-                  localizationsWithRequestedLocale[index].keyText = localizationsWithRequestedLocale[index].key;
+                for(var index = 0; index < localizationsWithLocalAndMode.length; index++) {
+                  localizationsWithLocalAndMode[index].keyText = localizationsWithLocalAndMode[index].key;
                 }
               }
-              collection.add(localizationsWithRequestedLocale, { merge: true });
+              collection.add(localizationsWithLocalAndMode, { merge: true });
 
               if(/^\/t/.test(request.url)) {
                 _this.setMeta('revealed', false);

@@ -4,7 +4,7 @@ module.exports = function(app) {
   var MessageFormat = require('../../../libraries/MessageFormat')
   var defaultMessage = 'Use <a href="http://l10ns.org/docs.html#messageformat" target="_blank">message format</a> to localize your string above. Click on the help buttons on the toolbar to get help on different formats.';
 
-  app.get('/api/:locale/l/:id', function(request, response) {
+  app.get('/api/:locale/:mode/l/:id', function(request, response) {
     file.readLocalizations()
       .then(function(localizations) {
         var locale = request.param('locale');
@@ -49,7 +49,7 @@ module.exports = function(app) {
       });
   });
 
-  app.put('/api/:locale/l/:id', function(request, response) {
+  app.put('/api/:locale/:mode/l/:id', function(request, response) {
     var id = request.param('id');
     var locale = request.param('locale');
 

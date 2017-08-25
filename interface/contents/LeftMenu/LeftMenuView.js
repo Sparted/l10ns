@@ -114,9 +114,9 @@ define(function(require) {
 
     _navigateHome: function() {
       this.$localizationRegion.addClass('is-hidden').removeClass('is-revealed');
-      setTimeout(function() {
-        app.navigate('/' + app.language + '/localizations');
-      }, 300);
+      var mode = window.location.pathname.split('/')[2];
+
+      window.location.pathname = '/' + app.language + '/' + mode + '/localizations';
     }
   });
 });

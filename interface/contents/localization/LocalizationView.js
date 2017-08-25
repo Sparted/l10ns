@@ -382,12 +382,15 @@ define(function(require) {
 
     _save: function(event) {
       var _this = this;
+      var mode = window.location.pathname.split('/')[2];
 
       if(Date.now() - this._lastSave < 1000) {
         return;
       }
 
       this._lastSave = Date.now();
+      if (mode === 'Validate')
+        this.model.attributes.validated = true;
 
       var sinusWave = new SinusWave;
       sinusWave.setCanvas(this.$loadingCanvas[0]);
@@ -418,9 +421,10 @@ define(function(require) {
       var _this = this;
       var id = event.currentTarget.getAttribute('data-id');
       var key = encodeURI(event.currentTarget.getAttribute('data-key').replace(/\s/g, '-'));
+      var mode = window.location.pathname.split('/')[2];
 
       setTimeout(function() {
-        app.navigate('/' + app.language + '/l/' + id + '/' + key);
+        app.navigate('/' + app.language + '/' + mode + '/l/' + id + '/' + key);
       }, 400);
     },
 
@@ -432,12 +436,15 @@ define(function(require) {
      */
 
     toHTML: function() {
+      var mode = window.location.pathname.split('/')[2];
       var _this = this
         , html = ''
         , values = ''
+        , save = mode === 'Validate' ? 'Validate' : 'Save'
         , json = this.model.toJSON();
 
       json.values = values;
+      json.l10ns.save = save;
 
       html += template['Localization'](json);
 
